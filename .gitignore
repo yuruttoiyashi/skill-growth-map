@@ -1,0 +1,5 @@
+Add-Content .gitignore ".env"
+Add-Content .gitignore ".env.local"
+Add-Content .gitignore "dist"
+Add-Content .gitignore "node_modules"
+Add-Content .gitignore "firebase-debug.*.log"

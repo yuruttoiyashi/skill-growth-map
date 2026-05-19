@@ -1,73 +1,170 @@
-# React + TypeScript + Vite
+# Skill Growth Map
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Skill Growth Map は、学習中の技術・制作物・成長ログを一元管理し、自身のスキル形成過程を可視化するキャリア支援アプリです。
 
-Currently, two official plugins are available:
+単なる学習記録ではなく、  
+**「どの制作物がどのスキルを証明しているか」** を整理できる点を重視して開発しました。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+転職活動やポートフォリオ提出時に、自分の技術習得状況・制作実績・成長過程を説明しやすくすることを目的としています。
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Demo
 
-## Expanding the ESLint configuration
+- Live Demo: https://skill-growth-map.vercel.app/
+- GitHub: https://github.com/yuruttoiyashi/skill-growth-map
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### スキル管理
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- スキル名の登録
+- カテゴリ分類
+- 到達度の設定
+  - 学習中
+  - 実装経験あり
+  - ポートフォリオ掲載済み
+  - 実務・業務改善で活用
+  - 強み
+- スキルごとのメモ記録
+- スキル削除
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 制作物管理
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 制作物名の登録
+- 概要の登録
+- Live URL / GitHub URL の登録
+- 使用スキルとの紐づけ
+- 制作物削除
+
+### 成長ログ管理
+
+- 日付つきの成長ログ登録
+- 学習内容・実装内容・気づきの記録
+- 関連スキルとの紐づけ
+- 成長ログ削除
+
+### スキル可視化
+
+- 登録スキルをカテゴリ別に分類
+- 到達度をスコア化
+- SVGによるレーダーチャート風の可視化
+- カテゴリ別スコア表示
+
+### Markdown出力
+
+- 登録したスキル・制作物・成長ログをもとに、ポートフォリオ用Markdownを自動生成
+- Markdownのコピー
+- `.md` ファイルとして保存
+
+### localStorage保存
+
+- 登録データはブラウザの localStorage に自動保存
+- ページを更新してもデータが保持される
+- ログイン不要でデモ確認が可能
+
+---
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- localStorage
+- SVG
+
+---
+
+## Purpose
+
+このアプリは、SE・Webアプリ開発職への転職活動を想定して作成しました。
+
+制作物が増えるほど、  
+「どの技術をどのアプリで使ったのか」  
+「どの領域が自分の強みなのか」  
+「次にどの技術を伸ばすべきか」  
+が分かりにくくなるため、それらを整理・可視化できるアプリとして設計しています。
+
+---
+
+## Main Screens
+
+### Dashboard
+
+登録スキル数、制作物数、成長ログ数、AI系スキル数、強み、実績化スキルを一覧で確認できます。
+
+### Skill Radar
+
+スキルの到達度をカテゴリ別にスコア化し、レーダーチャート風に表示します。
+
+### Skill Map
+
+カテゴリ別にスキルを整理し、現在の習得状況やメモを確認できます。
+
+### Project Mapping
+
+制作物と使用スキルを紐づけ、面接やポートフォリオ説明時に活用できます。
+
+### Growth Logs
+
+学習・開発・改善の記録を時系列で管理できます。
+
+### Markdown Export
+
+ポートフォリオ掲載文や提出用資料として使えるMarkdownを自動生成できます。
+
+---
+
+## Score Design
+
+スキル到達度は以下の基準でスコア化しています。
+
+| 到達度 | スコア |
+|---|---:|
+| 学習中 | 25 |
+| 実装経験あり | 50 |
+| ポートフォリオ掲載済み | 70 |
+| 実務・業務改善で活用 | 85 |
+| 強み | 95 |
+
+カテゴリごとの平均スコアを算出し、スキル成熟度として可視化しています。
+
+---
+
+## What I Focused On
+
+このアプリでは、以下の点を重視しました。
+
+- 学習記録だけでなく、制作物とスキルを紐づけること
+- ポートフォリオ提出時に説明しやすい構成にすること
+- localStorageを使い、ログインなしで動作確認できること
+- Tailwind CSSで見やすいダッシュボードUIを作ること
+- SVGを使って、外部ライブラリなしでレーダーチャート風UIを実装すること
+- Markdown出力により、職務経歴書やポートフォリオ文面へ転用しやすくすること
+
+---
+
+## Future Improvements
+
+今後の拡張案です。
+
+- Firebase Authentication によるログイン機能
+- Firestore によるクラウド保存
+- ユーザーごとのスキル管理
+- 公開プロフィールページの生成
+- AIによるキャリアコメント生成
+- AIによる次に学ぶべき技術の提案
+- GitHub API連携によるリポジトリ自動取得
+- 成長ログの月別グラフ化
+- PDF出力
+
+---
+
+## Setup
+
+```bash
+npm install
